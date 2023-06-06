@@ -48,7 +48,7 @@ const options = {
     {
       type: 'pie',
       data: loadData(),
-      radius: '75%',
+      radius: '60%',
       roseType: 'radius',
       itemStyle: {
         borderRadius: 5,
@@ -65,6 +65,13 @@ const options = {
       },
     }
   ],
+  grid: {
+    top: 40,
+    left: 10,
+    bottom: 10,
+    right: 10,
+    containLabel: true,
+  },
 };
 // @ts-ignore
 const myChart = useECharts(chartEl, undefined, undefined, options);
