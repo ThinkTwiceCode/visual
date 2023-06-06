@@ -9,7 +9,13 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BarAndLine: typeof import('./src/components/bar-and-line.vue')['default']
+    ChinaMap: typeof import('./src/components/china-map.vue')['default']
+    DynamicallySortedBar: typeof import('./src/components/dynamically-sorted-bar.vue')['default']
+    RectangleWrap: typeof import('./src/components/rectangle-wrap.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SinglePie: typeof import('./src/components/single-pie.vue')['default']
+    StaircaseWaterfall: typeof import('./src/components/staircase-waterfall.vue')['default']
   }
 }

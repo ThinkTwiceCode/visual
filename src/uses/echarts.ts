@@ -1,8 +1,8 @@
 import * as echarts from 'echarts';
 import type { ECharts, EChartsCoreOption, SetOptionOpts } from 'echarts';
-import { shallowRef, isRef, onMounted, onBeforeUnmount } from 'vue';
+import { shallowRef, isRef, onMounted, onBeforeUnmount, nextTick } from 'vue';
 import type { Ref } from "vue";
-import { useEventListener } from '@vueuse/core';
+import { useEventListener, useDebounceFn } from '@vueuse/core';
 
 export { echarts };
 
@@ -102,8 +102,17 @@ export function useECharts(el: Ref<HTMLElement | undefined> | HTMLElement, theme
   };
 }
 
-useEventListener('resize', () => {
+// 部分图表不知为何在窗口缩小时，立即调用resize会变得比实际小
+async function resizeChart() {
   InstanceSet.forEach((instance) => {
     instance.resize();
   });
-});
+  await nextTick();
+  InstanceSet.forEach((instance) => {
+    instance.resize();
+  });
+}
+
+const handleResize = useDebounceFn(resizeChart, 20);
+
+useEventListener('resize', handleResize);
