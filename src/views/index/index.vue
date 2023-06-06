@@ -14,7 +14,7 @@
       </RectangleWrap>
     </div>
 
-    <ChinaMap class="main box" :year="now.year" :census="now.census" @on-selected="onSelectProvince" />
+    <ChinaMap class="main" :year="now.year" :census="now.census" @on-selected="onSelectProvince" />
 
     <div class="right">
       <RectangleWrap>
@@ -135,6 +135,7 @@ export default { name: "PageIndex" };
     top: 0;
     left: 0;
     width: 100%;
+    padding: 10px;
     height: @header-height;
     display: flex;
     align-items: center;
@@ -151,6 +152,32 @@ export default { name: "PageIndex" };
 
   .main {
     flex: 4;
+    margin: 0 20px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .page-index {
+    display: block;
+    padding: @page-padding;
+    
+    > * {
+      + * {
+        margin-top: 20px;
+      }
+    }
+    
+    .header {
+      position: static;
+      height: auto;
+    }
+
+    .main {
+      width: 100%;
+      height: 30%;
+      min-height: 300px;
+      margin: 0;
+    }
   }
 }
 </style>
