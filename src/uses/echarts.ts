@@ -113,6 +113,6 @@ async function resizeChart() {
   });
 }
 
-const handleResize = useDebounceFn(resizeChart, 20);
+const handleResize = useDebounceFn(resizeChart, 100);
 
 useEventListener('resize', handleResize);
